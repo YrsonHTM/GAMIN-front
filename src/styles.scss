@@ -1,1 +1,114 @@
 /* You can add global styles to this file, and also import other style files */
+
+html, body { height: 100%; }
+body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+
+.ml-5{
+    margin-left: 5px;
+}
+
+.ml-10{
+    margin-left: 10px;
+}
+
+.pb-5{
+    padding-bottom: 5px;
+}
+
+.pb-10{
+    padding-bottom: 10px;
+}
+
+.mt-5{
+    margin-top: 5px;
+}
+
+.mt-10{
+    margin-top: 10px;
+}
+
+.mt-20{
+    margin-top: 20px;
+}
+
+.mb-10{
+    margin-bottom: 10px;
+}
+
+.mb-5{
+    margin-bottom: 5px;
+}
+
+.cencen{
+    display: flex;
+    text-align: center;
+    justify-content: center;
+}
+
+.absolute{
+    position: absolute !important;
+}
+
+
+// Colores primarios
+$color-primario: #3F51B5;
+$color-primario-claro: #9FA8DA;
+
+// Colores secundarios
+$color-secundario: #E91E63;
+$color-secundario-claro: #F48FB1;
+
+// Colores de acento
+$color-acento: #FF4081;
+$color-acento-claro: #FF80AB;
+
+//blanco
+$color-texto-blanco: #f6f6f6;
+
+.row-end{
+    flex-direction: row;
+    display: flex;
+    justify-content: flex-end;
+}
+
+.title{
+    font-size: 26px !important;
+    font-weight: bold;
+    color: $color-primario;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+/* Colores primarios */
+.primary-color {
+color: #3F51B5;
+}
+
+.primary-color-light {
+color: #9FA8DA;
+}
+
+/* Colores secundarios */
+.secondary-color {
+color: #E91E63;
+}
+
+.secondary-color-light {
+color: #F48FB1;
+}
+
+/* Colores de acento */
+.accent-color {
+color: #FF4081;
+}
+
+.accent-color-light {
+color: #FF80AB;
+}
+
+.border{
+    border: 1px solid #666 !important;
+}

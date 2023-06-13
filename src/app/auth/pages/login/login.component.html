@@ -1,0 +1,15 @@
+<div class="login-container">
+    <h2>Iniciar sesión</h2>
+    <form (ngSubmit)="login()">
+      <mat-form-field>
+        <input matInput placeholder="Correo electrónico" [(ngModel)]="email" name="email" required>
+      </mat-form-field>
+      <mat-form-field>
+        <input matInput type="password" placeholder="Contraseña" [(ngModel)]="password" name="password" required>
+      </mat-form-field>
+      <button mat-raised-button color="primary" type="submit">Iniciar sesión</button>
+    </form>
+    <p>No tienes una cuenta?</p>
+    <a routerLink="/auth/register">Regístrate</a>
+  </div>
+  

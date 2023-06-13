@@ -1,0 +1,17 @@
+
+<app-toggle-nav></app-toggle-nav>
+<div class="crear-inventario-container">
+    <div class="caja-primario">
+      <h2>Crear Nuevo Inventario</h2>
+      <form (ngSubmit)="crearInventario()" #crearInventarioForm="ngForm">
+        <mat-form-field>
+          <input matInput placeholder="Nombre del inventario" [(ngModel)]="nombreInventario" name="nombreInventario" required>
+        </mat-form-field>
+        <mat-form-field>
+          <textarea matInput placeholder="Descripción del inventario" [(ngModel)]="descripcionInventario" name="descripcionInventario" required></textarea>
+        </mat-form-field>
+        <button mat-raised-button color="primary" type="submit" [disabled]="!crearInventarioForm.valid">Crear Inventario</button>
+      </form>
+    </div>
+</div>
+  

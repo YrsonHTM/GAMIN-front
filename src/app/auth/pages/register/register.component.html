@@ -1,0 +1,17 @@
+<div class="register-container">
+    <h2>Registro</h2>
+    <form (ngSubmit)="register()">
+      <mat-form-field>
+        <input matInput placeholder="Nombre completo" [(ngModel)]="fullName" name="fullName" required>
+      </mat-form-field>
+      <mat-form-field>
+        <input matInput placeholder="Correo electrónico" [(ngModel)]="email" name="email" required>
+      </mat-form-field>
+      <mat-form-field>
+        <input matInput type="password" placeholder="Contraseña" [(ngModel)]="password" name="password" required>
+      </mat-form-field>
+      <button mat-raised-button color="primary" type="submit">Registrarse</button>
+    </form>
+    <p>¿Ya tienes una cuenta? <a routerLink="/login">Iniciar sesión</a></p>
+  </div>
+  

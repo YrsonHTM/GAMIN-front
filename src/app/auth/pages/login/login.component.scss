@@ -1,0 +1,33 @@
+@import "src/styles.scss";
+
+.login-container {
+    max-width: 400px;
+    margin: 0 auto;
+    padding: 20px;
+    background-color: #FFFFFF; /* Cambiar el color de fondo aquí */
+    border-radius: 4px;
+  }
+  
+  h2 {
+    text-align: center;
+    margin-bottom: 20px;
+    color: $color-primario; /* Cambiar el color del texto aquí */
+  }
+  
+  form {
+    display: flex;
+    flex-direction: column;
+  }
+  
+  p {
+    text-align: center;
+    margin-top: 20px;
+    color: $color-primario-claro;
+  }
+  
+  a {
+    color: #3F51B5; /* Indigo */
+    font-weight: bold;
+    text-decoration: none;
+  }
+  

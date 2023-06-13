@@ -1,0 +1,41 @@
+<div class="inventarios-container">
+    <mat-card>
+        <mat-card-content><h3 class="title">{{ inventario.nombre }}</h3></mat-card-content>
+    </mat-card>
+    <div class="inventario">
+      <p>Cantidad de productos: {{ inventario.productos.length }}</p>
+      <div class="row-end mb-10">
+        <button mat-raised-button color="primary" (click)="agregarProducto()">Agregar Producto</button>
+      </div>
+
+      <mat-table [dataSource]="inventario.productos" class="tabla-productos">
+        <ng-container matColumnDef="nombre">
+          <mat-header-cell *matHeaderCellDef>Nombre</mat-header-cell>
+          <mat-cell *matCellDef="let producto">{{ producto.nombre }}</mat-cell>
+        </ng-container>
+        <ng-container matColumnDef="descripcion">
+          <mat-header-cell *matHeaderCellDef>Descripción</mat-header-cell>
+          <mat-cell *matCellDef="let producto">{{ producto.descripcion }}</mat-cell>
+        </ng-container>
+        <ng-container matColumnDef="cantidad">
+          <mat-header-cell *matHeaderCellDef>Cantidad</mat-header-cell>
+          <mat-cell *matCellDef="let producto">{{ producto.cantidad }}</mat-cell>
+        </ng-container>
+        <ng-container matColumnDef="acciones">
+          <mat-header-cell *matHeaderCellDef>Acciones</mat-header-cell>
+          <mat-cell *matCellDef="let producto">
+            <button mat-icon-button color="primary" (click)="verProducto(producto)">
+              <mat-icon>visibility</mat-icon>
+            </button>
+            <button mat-icon-button color="warn" (click)="eliminarProducto(producto)">
+              <mat-icon>delete</mat-icon>
+            </button>
+          </mat-cell>
+        </ng-container>
+        <mat-header-row *matHeaderRowDef="columnas"></mat-header-row>
+        <mat-row *matRowDef="let row; columns: columnas;"></mat-row>
+      </mat-table>
+      <mat-paginator [pageSizeOptions]="[5, 10, 25]" showFirstLastButtons></mat-paginator>
+    </div>
+  </div>
+  
