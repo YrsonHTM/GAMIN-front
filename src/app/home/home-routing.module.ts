@@ -4,6 +4,7 @@ import { LateralComponent } from './lateral/lateral.component';
 import { CrearInventarioComponent } from './pages/crear-inventario/crear-inventario.component';
 import { HomeComponent } from './pages/home/home.component';
 import { InventarioComponent } from './pages/inventario/inventario.component';
+import { ProductosComponent } from './pages/productos/productos.component';
 
 const routes: Routes = [{
   path: '',
@@ -20,6 +21,10 @@ const routes: Routes = [{
     {
       path: 'inventario/:id',
       component: InventarioComponent
+    },
+    {
+      path: 'productos',
+      component: ProductosComponent
     },
     {
       path: '**',

@@ -10,6 +10,11 @@ import { FormsModule } from '@angular/forms';
 import { ToggleNavComponent } from './pages/toggle-nav/toggle-nav.component';
 import { InventarioComponent } from './pages/inventario/inventario.component';
 import { AgregarProductoModalComponent } from './pages/inventario/components/agregar-producto-modal/agregar-producto-modal.component';
+import { ProductosComponent } from './pages/productos/productos.component';
+import { AgregarNuevoProductoComponent } from './pages/inventario/components/agregar-nuevo-producto/agregar-nuevo-producto.component';
+import { EditarNuevoProductoComponent } from './pages/inventario/components/editar-nuevo-producto/editar-nuevo-producto.component';
+import { EditarProductoModalComponent } from './pages/inventario/components/editar-producto-modal/editar-producto-modal.component';
+import { CompartirInventarioComponent } from './pages/inventario/components/compartir-inventario/compartir-inventario.component';
 
 
 @NgModule({
@@ -19,7 +24,12 @@ import { AgregarProductoModalComponent } from './pages/inventario/components/agr
     CrearInventarioComponent,
     ToggleNavComponent,
     InventarioComponent,
-    AgregarProductoModalComponent
+    AgregarProductoModalComponent,
+    ProductosComponent,
+    AgregarNuevoProductoComponent,
+    EditarNuevoProductoComponent,
+    EditarProductoModalComponent,
+    CompartirInventarioComponent
   ],
   imports: [
     CommonModule,

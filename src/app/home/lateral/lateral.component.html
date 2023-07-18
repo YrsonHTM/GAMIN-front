@@ -3,12 +3,17 @@
     <mat-nav-list>
       <button class="ml-10" mat-raised-button color="primary" (click)="crearNuevoInventario()"> <mat-icon mat-list-icon>add</mat-icon>Nuevo Inventario</button>
       <mat-divider class="mt-20 mb-10"></mat-divider>
+      <mat-list-item (click)="goToProductos()">
+        <mat-icon class="mt-5 secondary-color-light" mat-list-icon>shopping_cart</mat-icon>
+        <span class="secondary-color-light mb-10" mat-line>Productos</span>
+      </mat-list-item>
       <mat-list-item  *ngFor="let inventario of inventarios"
                       (click)="seleccionarInventario(inventario)"
                       [ngClass]="{ 'selected': inventarioSeleccionado === inventario }">
         <mat-icon class="mt-5 secondary-color-light" mat-list-icon>folder</mat-icon>
         <span class="secondary-color-light mb-10" mat-line>{{ inventario.nombre }}</span>
       </mat-list-item>
+      <button mat-button (click)="logout()">Logout</button>
     </mat-nav-list>
   </mat-sidenav>
   <mat-sidenav-content class="container">
