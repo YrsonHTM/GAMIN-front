@@ -1,0 +1,23 @@
+.inventarios-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    flex-direction: column;
+    padding: 16px;
+  }
+  
+  .inventario {
+    margin: 16px;
+    padding: 16px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+  }
+  
+  .tabla-productos {
+    width: 100%;
+  }
+  
+  button {
+    margin-top: 16px;
+  }
+  

@@ -1,6 +1,10 @@
 <div class="inventarios-container">
     <mat-card>
-        <mat-card-content><h3 class="title">{{ inventario.nombre }}</h3></mat-card-content>
+        <mat-card-content class="content-title"><h3 class="title">{{ inventario.nombre }}</h3>
+          <button mat-icon-button color="primary" (click)="compartirInventario()">
+          <mat-icon>share</mat-icon>
+          </button>
+      </mat-card-content>
     </mat-card>
     <div class="inventario">
       <p>Cantidad de productos: {{ inventario.productos.length }}</p>
@@ -19,16 +23,20 @@
         </ng-container>
         <ng-container matColumnDef="cantidad">
           <mat-header-cell *matHeaderCellDef>Cantidad</mat-header-cell>
-          <mat-cell *matCellDef="let producto">{{ producto.cantidad }}</mat-cell>
+          <mat-cell *matCellDef="let producto">{{ producto.cantidad_disponible }}</mat-cell>
+        </ng-container>
+        <ng-container matColumnDef="precio">
+          <mat-header-cell *matHeaderCellDef>Precio</mat-header-cell>
+          <mat-cell *matCellDef="let producto">{{ producto.precio }}</mat-cell>
         </ng-container>
         <ng-container matColumnDef="acciones">
           <mat-header-cell *matHeaderCellDef>Acciones</mat-header-cell>
           <mat-cell *matCellDef="let producto">
-            <button mat-icon-button color="primary" (click)="verProducto(producto)">
-              <mat-icon>visibility</mat-icon>
-            </button>
             <button mat-icon-button color="warn" (click)="eliminarProducto(producto)">
               <mat-icon>delete</mat-icon>
+            </button>
+            <button mat-icon-button color="primary" (click)="editarProducto(producto)">
+              <mat-icon>edit</mat-icon>
             </button>
           </mat-cell>
         </ng-container>
