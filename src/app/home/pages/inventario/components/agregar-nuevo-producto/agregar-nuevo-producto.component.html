@@ -1,0 +1,23 @@
+<h2 class="modal-title">Crear Producto</h2>
+
+<form class="form" (ngSubmit)="agregarProducto()" #formulario="ngForm">
+  <mat-form-field appearance="fill" class="full-width">
+    <mat-label>Nombre</mat-label>
+    <input matInput [(ngModel)]="producto.nombre" name="nombre" required>
+  </mat-form-field>
+
+  <mat-form-field appearance="fill" class="full-width">
+    <mat-label>Descripción</mat-label>
+    <textarea matInput [(ngModel)]="producto.descripcion" name="descripcion" required></textarea>
+  </mat-form-field>
+
+  <mat-form-field appearance="fill" class="full-width">
+    <mat-label>Precio</mat-label>
+    <input matInput type="number" [(ngModel)]="producto.precio" name="precio" required>
+  </mat-form-field>
+
+  <div class="modal-buttons">
+    <button class="border" mat-button type="button" (click)="cancelar()">Cancelar</button>
+    <button mat-raised-button color="primary" type="submit">Agregar</button>
+  </div>
+</form>

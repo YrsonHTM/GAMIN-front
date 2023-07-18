@@ -1,15 +1,21 @@
-import { AfterViewInit, Component, ViewChild } from '@angular/core';
+import { AfterViewInit, Component, OnInit, ViewChild } from '@angular/core';
 import { MatPaginator, PageEvent } from '@angular/material/paginator';
 import { MatTableDataSource } from '@angular/material/table';
 import { AgregarProductoModalComponent } from './components/agregar-producto-modal/agregar-producto-modal.component';
 import { MatDialog } from '@angular/material/dialog';
+import { InventarioService } from '../../services/inventario.service';
+import { ActivatedRoute, Router } from '@angular/router';
+import { inventario } from '../../interfaces/inventario.interface';
+import { Producto } from '../../interfaces/producto.interface';
+import { EditarProductoModalComponent } from './components/editar-producto-modal/editar-producto-modal.component';
+import { CompartirInventarioComponent } from './components/compartir-inventario/compartir-inventario.component';
 
 @Component({
   selector: 'app-inventario',
   templateUrl: './inventario.component.html',
   styleUrls: ['./inventario.component.scss']
 })
-export class InventarioComponent implements AfterViewInit {
+export class InventarioComponent implements AfterViewInit, OnInit {
 
   @ViewChild(MatPaginator) paginator!: MatPaginator;
 
@@ -17,16 +23,26 @@ export class InventarioComponent implements AfterViewInit {
 
   inventario: any = {
     nombre: 'Inventario 1',
+    id: 0,
     productos: [
-      { nombre: 'Producto 1', descripcion: 'Descripción del Producto 1', cantidad: 10 },
-      { nombre: 'Producto 2', descripcion: 'Descripción del Producto 2', cantidad: 5 },
-      { nombre: 'Producto 3', descripcion: 'Descripción del Producto 3', cantidad: 2 }
     ]
   };
 
-  columnas: string[] = ['nombre', 'descripcion', 'cantidad', 'acciones'];
+  columnas: string[] = ['nombre', 'descripcion', 'cantidad','precio', 'acciones'];
 
-  constructor(public dialog: MatDialog) {}
+  constructor(
+    public dialog: MatDialog,
+    private inventarioService: InventarioService,
+    private router: Router,
+    private route: ActivatedRoute
+    ) {}
+
+  ngOnInit(): void {
+
+    this.getInventarioInfo();
+
+
+  }
 
   ngAfterViewInit(): void {
     // Configurar el paginador
@@ -34,15 +50,64 @@ export class InventarioComponent implements AfterViewInit {
     this.dataSource.paginator = this.paginator;
   }
 
-  agregarProducto(): void {
-    const dialogRef = this.dialog.open(AgregarProductoModalComponent, {
+  getInventarioInfo(): void{
+
+    this.route.paramMap.subscribe(params => {
+      const id = params.get('id');
+
+      this.inventarioService.getInventario(id).subscribe(
+        (res: inventario) => {
+          this.inventario.id = res.inventario_id;
+          this.inventario.nombre = res.nombre;
+          this.dataSource.data = this.inventario.productos;
+          this.dataSource.paginator = this.paginator;
+        }
+      );
+
+      this.inventarioService.getProductos(id).subscribe(
+        (res: Producto[]) => {
+          this.inventario.productos = res;
+          console.log(res)
+          this.dataSource.data = this.inventario.productos;
+          this.dataSource.paginator = this.paginator;
+        }
+        
+      );
+
+    });
+
+  }
+
+  compartirInventario(): void {
+    const dialogRef = this.dialog.open(CompartirInventarioComponent, {
       width: '400px',
-      disableClose: true
+      disableClose: true,
+      data: this.inventario
     });
 
     dialogRef.afterClosed().subscribe(result => {
       if (result === 'agregar') {
         // Lógica para agregar el producto
+        this.getInventarioInfo();
+        console.log('Producto agregado');
+      } else {
+        // Lógica para cancelar
+        console.log('Agregar producto cancelado');
+      }
+    });
+  }
+
+  agregarProducto(): void {
+    const dialogRef = this.dialog.open(AgregarProductoModalComponent, {
+      width: '400px',
+      disableClose: true,
+      data: this.inventario
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+      if (result === 'agregar') {
+        // Lógica para agregar el producto
+        this.getInventarioInfo();
         console.log('Producto agregado');
       } else {
         // Lógica para cancelar
@@ -54,6 +119,25 @@ export class InventarioComponent implements AfterViewInit {
   eliminarProducto(producto: any): void {
     // Aquí puedes implementar la lógica para eliminar un producto del inventario
     console.log('Eliminar producto', producto.nombre);
+  }
+
+  editarProducto(producto: any): void {
+    const dialogRef = this.dialog.open(EditarProductoModalComponent, {
+      width: '400px',
+      disableClose: true,
+      data: producto
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+      if (result === 'agregar') {
+        // Lógica para agregar el producto
+        this.getInventarioInfo();
+        console.log('Producto agregado');
+      } else {
+        // Lógica para cancelar
+        console.log('Agregar producto cancelado');
+      }
+    });
   }
 
   verProducto(producto: any): void {

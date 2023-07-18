@@ -1,0 +1,28 @@
+@import "src/styles.scss";
+.modal-title {
+    text-align: center;
+    font-size: 26px;
+    font-weight: bold;
+    color: $color-texto-blanco;
+    background-color: $color-primario;
+    padding-top: 5px;
+    padding-bottom: 5px;
+  }
+
+  .form{
+    padding: 15px;
+  }
+  
+  .full-width {
+    width: 100%;
+  }
+  
+  .modal-buttons {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 20px;
+    margin-bottom: 10px;
+    gap: 15px;
+  }
+  
