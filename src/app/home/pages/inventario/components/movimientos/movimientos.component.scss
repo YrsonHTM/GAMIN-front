@@ -13,6 +13,14 @@
     padding: 15px;
   }
   
+  .campos{
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    justify-content: center;
+    align-items: center;
+  }
+
   .full-width {
     width: 100%;
   }

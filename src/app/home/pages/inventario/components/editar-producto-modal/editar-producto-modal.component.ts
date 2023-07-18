@@ -31,13 +31,9 @@ export class EditarProductoModalComponent {
 
 
   ngOnInit(): void {
-    this.producto.quantity = this.data.quantity;
-    this.inventarioService.getAllProductos().subscribe(
-      (res: Producto[]) => {
-        this.productos = res;
-        console.log(res)
-      }
-    );
+    console.log(this.data);
+    this.producto.quantity = this.data.cantidad_disponible;
+    this.producto.productId = this.data.producto_id;
   }
 
   agregarProducto(): void {
@@ -46,7 +42,20 @@ export class EditarProductoModalComponent {
     if (this.producto.productId && this.producto.quantity) {
       // Lógica para agregar el producto
 
-      
+      this.inventarioService.editarProdictoInv(this.data.inventario_producto_id,this.producto.quantity).subscribe(
+        (res)=>{
+          this.snack.open('Producto editado', 'Cerrar', {
+            duration: 3000,
+          });
+          this.dialogRef.close('agregar');
+        },
+        (err)=>{
+          this.snack.open('Error al editar el producto', 'Cerrar', {
+            duration: 3000,
+          });
+          this.dialogRef.close('agregar');
+        }
+      );
 
     }
   }

@@ -15,6 +15,10 @@ import { AgregarNuevoProductoComponent } from './pages/inventario/components/agr
 import { EditarNuevoProductoComponent } from './pages/inventario/components/editar-nuevo-producto/editar-nuevo-producto.component';
 import { EditarProductoModalComponent } from './pages/inventario/components/editar-producto-modal/editar-producto-modal.component';
 import { CompartirInventarioComponent } from './pages/inventario/components/compartir-inventario/compartir-inventario.component';
+import { ProvedoresComponent } from './pages/provedores/provedores.component';
+import { AgregarProvedorComponent } from './pages/provedores/components/agregar-provedor/agregar-provedor.component';
+import { EditarProvedorComponent } from './pages/provedores/components/editar-provedor/editar-provedor.component';
+import { MovimientosComponent } from './pages/inventario/components/movimientos/movimientos.component';
 
 
 @NgModule({
@@ -29,7 +33,11 @@ import { CompartirInventarioComponent } from './pages/inventario/components/comp
     AgregarNuevoProductoComponent,
     EditarNuevoProductoComponent,
     EditarProductoModalComponent,
-    CompartirInventarioComponent
+    CompartirInventarioComponent,
+    ProvedoresComponent,
+    AgregarProvedorComponent,
+    EditarProvedorComponent,
+    MovimientosComponent
   ],
   imports: [
     CommonModule,
