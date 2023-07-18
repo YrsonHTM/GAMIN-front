@@ -17,6 +17,8 @@ export class LateralComponent implements OnInit {
 
   inventarios : CreatedInventory[] = [];
 
+  inventariosCompartidos : CreatedInventory[] = [];
+
   constructor(
     private homeService: HomeService,
     private router: Router,
@@ -42,7 +44,9 @@ export class LateralComponent implements OnInit {
 
     this.inventarioService.getInventariosByUser(this.authService.userId).subscribe(
       (res: ResInventario) => {
-        this.inventarios = res.createdInventories
+        this.inventarios = res.createdInventories;
+        this.inventariosCompartidos = res.sharedInventories;
+        console.log(res);
       }
     );
 
@@ -52,6 +56,10 @@ export class LateralComponent implements OnInit {
 
   toggleSidenav(): void {
     this.sidenavOpened = !this.sidenavOpened;
+  }
+
+  goToProvedores(): void {
+    this.router.navigate(['/home/provedores']);
   }
 
   seleccionarInventario(inventario: any): void {

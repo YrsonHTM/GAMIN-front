@@ -9,6 +9,8 @@ import { inventario } from '../../interfaces/inventario.interface';
 import { Producto } from '../../interfaces/producto.interface';
 import { EditarProductoModalComponent } from './components/editar-producto-modal/editar-producto-modal.component';
 import { CompartirInventarioComponent } from './components/compartir-inventario/compartir-inventario.component';
+import { MovimientosComponent } from './components/movimientos/movimientos.component';
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 @Component({
   selector: 'app-inventario',
@@ -34,7 +36,8 @@ export class InventarioComponent implements AfterViewInit, OnInit {
     public dialog: MatDialog,
     private inventarioService: InventarioService,
     private router: Router,
-    private route: ActivatedRoute
+    private route: ActivatedRoute,
+    private snackBar: MatSnackBar
     ) {}
 
   ngOnInit(): void {
@@ -48,6 +51,25 @@ export class InventarioComponent implements AfterViewInit, OnInit {
     // Configurar el paginador
     this.dataSource.data = this.inventario.productos;
     this.dataSource.paginator = this.paginator;
+  }
+
+  verMovimientos(): void {
+    const dialogRef = this.dialog.open(MovimientosComponent, {
+      width: '400px',
+      disableClose: true,
+      data: this.inventario
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+      if (result === 'agregar') {
+        // Lógica para agregar el producto
+        this.getInventarioInfo();
+        console.log('Producto agregado');
+      } else {
+        // Lógica para cancelar
+        console.log('Agregar producto cancelado');
+      }
+    });
   }
 
   getInventarioInfo(): void{
@@ -118,7 +140,22 @@ export class InventarioComponent implements AfterViewInit, OnInit {
 
   eliminarProducto(producto: any): void {
     // Aquí puedes implementar la lógica para eliminar un producto del inventario
-    console.log('Eliminar producto', producto.nombre);
+    this.inventarioService.deleteProductoInv(producto.inventario_producto_id).subscribe(
+      (res: any) => {
+        console.log(res);
+        this.snackBar.open('Producto eliminado', 'Cerrar', {
+          duration: 3000
+        });
+        this.getInventarioInfo();
+      },
+      (err: any) => {
+        this.snackBar.open('Error al eliminar el producto', 'Cerrar', {
+          duration: 3000
+        });
+        console.log(err);
+      }
+    );
+    console.log('Eliminar producto', producto);
   }
 
   editarProducto(producto: any): void {

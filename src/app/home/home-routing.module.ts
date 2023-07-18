@@ -5,6 +5,7 @@ import { CrearInventarioComponent } from './pages/crear-inventario/crear-inventa
 import { HomeComponent } from './pages/home/home.component';
 import { InventarioComponent } from './pages/inventario/inventario.component';
 import { ProductosComponent } from './pages/productos/productos.component';
+import { ProvedoresComponent } from './pages/provedores/provedores.component';
 
 const routes: Routes = [{
   path: '',
@@ -25,6 +26,10 @@ const routes: Routes = [{
     {
       path: 'productos',
       component: ProductosComponent
+    },
+    {
+      path: 'provedores',
+      component: ProvedoresComponent
     },
     {
       path: '**',

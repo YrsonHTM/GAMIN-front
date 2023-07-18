@@ -7,7 +7,21 @@
         <mat-icon class="mt-5 secondary-color-light" mat-list-icon>shopping_cart</mat-icon>
         <span class="secondary-color-light mb-10" mat-line>Productos</span>
       </mat-list-item>
+      <mat-list-item (click)="goToProvedores()">
+        <mat-icon class="mt-5 secondary-color-light" mat-list-icon>business</mat-icon>
+        <span class="secondary-color-light mb-10" mat-line>Provedores</span>
+      </mat-list-item>
       <mat-list-item  *ngFor="let inventario of inventarios"
+                      (click)="seleccionarInventario(inventario)"
+                      [ngClass]="{ 'selected': inventarioSeleccionado === inventario }">
+        <mat-icon class="mt-5 secondary-color-light" mat-list-icon>folder</mat-icon>
+        <span class="secondary-color-light mb-10" mat-line>{{ inventario.nombre }}</span>
+      </mat-list-item>
+      <mat-list-item *ngIf="inventariosCompartidos.length > 0">
+        <mat-icon class="mt-5 secondary-color-light" mat-list-icon>share</mat-icon>
+        <span class="secondary-color-light mb-10" mat-line>Inventarios extra</span>
+      </mat-list-item>
+      <mat-list-item  *ngFor="let inventario of inventariosCompartidos"
                       (click)="seleccionarInventario(inventario)"
                       [ngClass]="{ 'selected': inventarioSeleccionado === inventario }">
         <mat-icon class="mt-5 secondary-color-light" mat-list-icon>folder</mat-icon>
