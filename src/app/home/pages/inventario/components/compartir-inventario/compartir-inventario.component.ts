@@ -11,7 +11,7 @@ import { InventarioService } from 'src/app/home/services/inventario.service';
 export class CompartirInventarioComponent {
 
   producto: any = {
-    id: 0,
+    id: "",
   };
 
   constructor(
@@ -32,7 +32,6 @@ export class CompartirInventarioComponent {
   agregarProducto(): void {
     // Validar el formulario antes de agregar el producto
     if (this.producto.id) {
-
       this.inventarioService.compartirInventario(this.data.id,this.producto.id).subscribe(
         (res) => {
           this.snackBar.open('Inventario Compartido', 'Cerrar', {});

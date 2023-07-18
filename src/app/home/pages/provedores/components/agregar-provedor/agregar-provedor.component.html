@@ -1,0 +1,26 @@
+<h2 class="modal-title">Crear Provedor</h2>
+
+<form class="form" (ngSubmit)="agregarProducto()" #formulario="ngForm">
+    
+  <mat-form-field appearance="fill" class="full-width">
+    <mat-label>Nombre</mat-label>
+    <input matInput [(ngModel)]="provedor.nombre" name="nombre" required>
+  </mat-form-field>
+
+  <mat-form-field class="example-form-field full-width">
+    <mat-label>Producto</mat-label>
+    <mat-select [(ngModel)]="provedor.productId" name="productId">
+      <mat-option *ngFor="let producto of productos" [value]="producto.producto_id">{{ producto.nombre }}</mat-option>
+    </mat-select>
+  </mat-form-field>
+
+  <mat-form-field appearance="fill" class="full-width">
+    <mat-label>Descripción</mat-label>
+    <textarea matInput [(ngModel)]="provedor.descripcion" name="descripcion" required></textarea>
+  </mat-form-field>
+  
+  <div class="modal-buttons">
+    <button class="border" mat-button type="button" (click)="cancelar()">Cancelar</button>
+    <button mat-raised-button color="primary" type="submit">Agregar</button>
+  </div>
+</form>

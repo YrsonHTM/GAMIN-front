@@ -48,20 +48,45 @@ export class InventarioService {
     return this.http.delete(`${this.url}/api/products/delete/${producto_id}`);
   }
 
+  deleteProductoInv(inventario_producto_id) {
+    return this.http.delete(`${this.url}/api/InventoryProducts/delete/${inventario_producto_id}`);
+  }
+
   editProducto(producto_id, nombre, descripcion, precio) {
     return this.http.put(`${this.url}/api/products/update/${producto_id}`, { nombre, descripcion, precio });
   }
 
-  addProductInv(inventoryId, productId, quantity) {
-    return this.http.post(`${this.url}/api/InventoryProducts/add/${inventoryId}`, {inventoryId, productId, quantity});
+  addProductInv(inventario_id, producto_id, cantidad_disponible) {
+    return this.http.post(`${this.url}/api/InventoryProducts/add`, {inventario_id, producto_id, cantidad_disponible});
   }
 
-  editarProdictoInv(inventoryId, productId, quantity){
-
+  editarProdictoInv(inventario_producto_id, cantidad_disponible){
+    return this.http.put(`${this.url}/api/InventoryProducts/update`, {inventario_producto_id, cantidad_disponible});
   }
 
-  compartirInventario(inventario_id, userId) {
-    return this.http.post(`${this.url}/api/inventorysShares/${inventario_id}/share`,  userId );
+  compartirInventario(inventario_id, correo_electronico) {
+    return this.http.post(`${this.url}/api/inventorysShares/share`,  {inventario_id,correo_electronico} );
+  }
+
+  getAllProvedores() {
+    return this.http.get(`${this.url}/api/providers/all`);
+  }
+
+  createProvedor(nombre_proveedor, descripcion_proveedor, usuario_id, producto_id) {
+    return this.http.post(`${this.url}/api/providers/create`, { nombre_proveedor, descripcion_proveedor, usuario_id , producto_id });
+  }
+
+  updateProvedor(nombre_proveedor, descripcion_proveedor, usuario_id, producto_id, proveedor_id)
+  {
+    return this.http.put(`${this.url}/api/providers/update`, {nombre_proveedor, descripcion_proveedor, usuario_id, producto_id, proveedor_id});
+  }
+
+  deleteProvedor(proveedor_id) {
+    return this.http.delete(`${this.url}/api/providers/delete/${proveedor_id}`);
+  }
+
+  getMovimientos(inventario_id) {
+    return this.http.get(`${this.url}/api/movements/get/${inventario_id}`);
   }
 
 }
